@@ -1,6 +1,6 @@
 /*
  * Project: xls2img
- * Repository: https://github.com/capp-adocia/Xls2Img
+ * Repository: https://github.com/capp-adocia/xls2img
  * Author: SiLan (https://github.com/capp-adocia)
  *
  * Copyright (c) 2026 SiLan
