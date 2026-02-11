@@ -162,7 +162,6 @@ int main()
 
     // Cleanup
     free(file_buffer);
-    xls2img_free_result(&images);
     xls2img_free_workbook_data(workbook_data);
     xls2img_close(reader);
 

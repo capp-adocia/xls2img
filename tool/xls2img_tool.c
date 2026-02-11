@@ -178,7 +178,6 @@ int wmain(int argc, wchar_t* argv[])
         fwprintf(stderr, L"Failed to extract images: %hs\n", xls2img_strerror(ret));
 
     // Cleanup
-    xls2img_free_result(&images);
     xls2img_free_workbook_data(workbook_data);
     xls2img_close(reader);
 
