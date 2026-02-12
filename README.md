@@ -14,15 +14,15 @@
    *   The WorkBook stream consists of multiple BIFF8 structures. Each BIFF8 contains a record type, record size, and record data. The required image data corresponds to the record type `MsoDrawingGroup`. This structure stores the embedded image data within the XLS file. By iterating through each BIFF8 structure, we can obtain all `MsoDrawingGroup` data.
    *   Due to the storage size limit of a single BIFF8, an image's data might be split across multiple BIFF8 records. Fortunately, whenever image data is split, subsequent data blocks (apart from the first) are marked with `recordType = BIFF8_CONTINUE`. This allows us to reassemble these separated data blocks.
 
-3. **Parse Image Data from `MsoDrawingGroup`**
-   *   The `MsoDrawingGroup` contains not only image data but also metadata. Therefore, it cannot be written directly to a file and requires further parsing. While Microsoft's official documentation exists, it is lengthy and complex for direct image parsing.
-   *   By analyzing the binary data of `MsoDrawingGroup`, it was discovered that most of its content consists of image data. Thus, a `heuristic algorithm` is chosen for parsing.
+3.  **Parsing Image Data from `MsoDrawingGroup`**
+    *   The `MsoDrawingGroup` record contains not only the raw image data but also interleaved metadata for purposes like describing graphic layouts and positions. Therefore, its entire data block cannot be written directly to a file. Further parsing is required to extract the pure image data. Although Microsoft provides relevant official documentation, it is voluminous, and parsing image data directly according to the full specifications is complex and time-consuming.
+    *   Analysis of the `MsoDrawingGroup`'s binary data reveals that most of its content is the raw image data, and these images are stored sequentially and completely. Based on this observation, employing a **Sequential Stream Splitting Algorithm based on File Signatures** proves to be an efficient and viable solution.
 
-4. **Heuristic Algorithm for Parsing Image Data**
-   *   `xls2img` specifically handles PNG and JPEG images. Its core ideas are as follows:
-       1.  **PNG:** Iterate through the `MsoDrawingGroup` data to find the 8-byte PNG file header signature (`89 50 4E 47 0D 0A 1A 0A`). This signature is distinctive and has a low probability of misidentification. The end position is then located by strictly following the PNG format specification to find the `IEND` chunk.
-       2.  **JPEG:** Similarly, iterate through the `MsoDrawingGroup` data to find the JPEG file header signature. Common signatures include `JFIF` (APP0) and `Exif` (APP1), both of which have relatively distinct signatures and are less prone to misidentification. For the end position, JPEG files typically end with `0xFF 0xD9`. However, in certain cases, this byte sequence might also appear within the image data itself (e.g., as part of the image content). Searching forward from the beginning could easily lead to finding a false end marker, causing a single complete image to be mistakenly identified as multiple images. To avoid this issue, this library adopts a **backward search** for `0xFF 0xD9`. The timing for this search is: when the next valid image header is found, the search begins backwards from the position of this new header to locate the end marker of the previous image.
-   *   At this point, the parsing for these two formats is complete. For performance concerns, please refer to the tests below.
+4.  **Sequential Stream Splitting Algorithm based on File Signatures**
+    *   `xls2img` specifically targets PNG and JPEG image formats. Its core implementation approach is as follows:
+        1.  **PNG:** Iterate through the `MsoDrawingGroup` data stream to precisely match the distinctive 8-byte PNG file header signature (`89 50 4E 47 0D 0A 1A 0A`). This signature has high specificity and a very low probability of misidentification. After locating the header, strictly follow the PNG format specification to find its corresponding `IEND` chunk, thereby determining the complete boundary of the image data.
+        2.  **JPEG:** Similarly, iterate through the data stream to find the starting markers for JPEG files. Common markers include headers for `JFIF` (Application Segment APP0) and `Exif` (Application Segment APP1), which also possess good distinctiveness. For the end marker, the standard ending for a JPEG file is `0xFF 0xD9`. However, the byte sequence `0xFF 0xD9` can sometimes also appear within the actual pixel data (content) of the image. Using a sequential forward scan to find the end marker is highly susceptible to capturing these "false" end markers, potentially splitting one complete image into multiple segments incorrectly. To circumvent this issue, this library employs a **backward traversal strategy** to locate `0xFF 0xD9`. The specific trigger is: once the next valid image file header is successfully located, the search begins backward from the position of this new header to find the true end marker of the previous image.
+    *   Through these methods, precise extraction of images in these two mainstream formats is achieved. For performance metrics, please refer to the tests below.
 
 ## CLI Tool
 
@@ -165,3 +165,4 @@ This project is licensed under the [MIT License](./LICENSE). See the `LICENSE` f
 
 
 *   Once again, thanks to [microsoft](https://github.com/microsoft/compoundfilereader)'s `compoundfilereader` project and its related tools and documentation for providing reference for understanding the XLS file format.
+
