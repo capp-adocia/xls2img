@@ -1,5 +1,5 @@
 ﻿# xls2img
-[Chinese](./README_CN.md) | [English](./README.md)
+[Chinese](./README_CN.md) | English
 
 `xls2img` is a C library designed to extract embedded images (such as JPEG, PNG) from Microsoft Excel 97-2003 format `.xls` files.
 
@@ -28,7 +28,7 @@
 
 In addition to being used as a library, 'xls2img' also provides a handy command-line tool for extracting images directly.
 
-** Download :** Go to the project's [Releases](https://github.com/capp-adocia/xls2img/releases) page and download the archive called 'xls2img_tool.zip'.
+**Download:** Go to the project's [Releases](https://github.com/capp-adocia/xls2img/releases) page and download the archive called 'xls2img_tool.zip'.
 
 ## Performance and Accuracy
 
@@ -165,4 +165,5 @@ This project is licensed under the [MIT License](./LICENSE). See the `LICENSE` f
 
 
 *   Once again, thanks to [microsoft](https://github.com/microsoft/compoundfilereader)'s `compoundfilereader` project and its related tools and documentation for providing reference for understanding the XLS file format.
+
 
