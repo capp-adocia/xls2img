@@ -41,8 +41,8 @@ Chinese | [English](./README.md)
 
 | 文件大小 | 图片数量 | 实际提取数量 | 状态 | 详情 |
 | :--- | :--- | :--- | :--- | :--- |
-| 6.5 MB | 6 张 | 6 张 | ✅ | 提取图像与源图像完全一致<br>![Small File Extraction Result](./doc/release_extrator_small.png) |
-| 47.5 MB | 20 张 | 20 张 | ✅ | 提取图像与源图像完全一致<br>![Big File Extraction Result](./doc/release_extrator_big.png) |
+| 6.5 MB | 6 张 | 6 张 | 提取图像与源图像完全一致 | ![Small File Extraction Result](./doc/release_extrator_small.png) |
+| 47.5 MB | 20 张 | 20 张 | 提取图像与源图像完全一致 | ![Big File Extraction Result](./doc/release_extrator_big.png) |
 
 **总结：** 经过多轮测试,性能还算可以，尚未发现特殊情况下无法正确提取的情况。
 
