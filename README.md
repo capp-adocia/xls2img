@@ -42,8 +42,8 @@ In addition to being used as a library, 'xls2img' also provides a handy command-
 
 | File Size | Number of Images | Actual Extracted | Status | Details |
 | :--- | :--- | :--- | :--- | :--- |
-| 6.5 MB | 6 | 6 | ✅ | Extracted images are identical to the source images<br>![Small File Extraction Result](./doc/release_extrator_small.png) |
-| 47.5 MB | 20 | 20 | ✅ | Extracted images are identical to the source images<br>![Big File Extraction Result](./doc/release_extrator_big.png) |
+| 6.5 MB | 6 | 6 | Extracted images are identical to the source images | ![Small File Extraction Result](./doc/release_extrator_small.png) |
+| 47.5 MB | 20 | 20 | Extracted images are identical to the source images | ![Big File Extraction Result](./doc/release_extrator_big.png) |
 
 **Summary:** After multiple rounds of testing, performance is acceptable, and no specific cases where correct extraction fails have been found.
 
@@ -171,6 +171,7 @@ This project is licensed under the [MIT License](./LICENSE). See the `LICENSE` f
 
 
 *   Once again, thanks to [microsoft](https://github.com/microsoft/compoundfilereader)'s `compoundfilereader` project and its related tools and documentation for providing reference for understanding the XLS file format.
+
 
 
 
