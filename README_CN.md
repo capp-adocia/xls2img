@@ -3,9 +3,6 @@ Chinese | [English](./README.md)
 
 `xls2img` 是一个用 C 语言编写的库，旨在从 Microsoft Excel 97-2003 格式的 `.xls` 文件中提取嵌入的图片（如 JPEG、PNG）。
 
-## 本项目解决的问题
-* 在C/C++环境下，从老旧.xls文件中提取内嵌的JPG/PNG图片。
-
 ## 为什么需要它
 * libxls不支持图片
 * 调用Python/PHP/Java方案太重
