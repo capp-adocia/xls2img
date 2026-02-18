@@ -6,7 +6,7 @@
 ## Why is it needed?
 
 * libxls does not support images.
-* Calling Python/PHP/Java solutions is too cumbersome.
+* Calling Python/Java solutions is too cumbersome.
 * Commercial libraries have licensing risks.
 
 ## Implementation
@@ -171,6 +171,7 @@ This project is licensed under the [MIT License](./LICENSE). See the `LICENSE` f
 
 
 *   Once again, thanks to [microsoft](https://github.com/microsoft/compoundfilereader)'s `compoundfilereader` project and its related tools and documentation for providing reference for understanding the XLS file format.
+
 
 
 
