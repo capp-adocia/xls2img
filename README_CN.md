@@ -5,7 +5,7 @@ Chinese | [English](./README.md)
 
 ## 为什么需要它
 * libxls不支持图片
-* 调用Python/PHP/Java方案太重
+* 调用Python/Java方案太重
 * 商业库有许可风险
 
 ## 实现
