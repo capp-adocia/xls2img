@@ -1,7 +1,16 @@
-﻿# xls2img
+# xls2img
 Chinese | [English](./README.md)
 
 `xls2img` 是一个用 C 语言编写的库，旨在从 Microsoft Excel 97-2003 格式的 `.xls` 文件中提取嵌入的图片（如 JPEG、PNG）。
+
+> **该项目有重大缺陷，请小心使用**
+
+> 本工具在开发过程中，所有测试用的`XLS`文件均经过WPS保存。开发时未意识到WPS会在保存时对文件进行“自动修复”，将碎片化的图片数据重新整理为连续格式。
+
+> 因此，本工具的提取算法实际上建立在`已整理`的数据格式之上。对于未经过WPS保存的原始XLS文件，是无法正常提取内嵌图片。
+
+> 这是一个开发盲点导致的缺陷，暂时我还无法解决，抱歉给您的使用带来不便。
+
 
 ## 为什么需要它
 * libxls不支持图片
@@ -34,17 +43,6 @@ Chinese | [English](./README.md)
 除了作为库使用，`xls2img` 还提供了一个方便的命令行工具，用于直接提取图片。
 
 **下载:** 请前往项目的 [Releases](https://github.com/capp-adocia/xls2img/releases) 页面，下载名为 `xls2img_tool.zip` 的压缩包。
-
-## 性能和准确度
-
-**性能测试**（在 Release 模式下解析 Workbook 流并提取 XLS 中的所有图片）：
-
-| 文件大小 | 图片数量 | 实际提取数量 | 状态 | 详情 |
-| :--- | :--- | :--- | :--- | :--- |
-| 6.5 MB | 6 张 | 6 张 | 提取图像与源图像完全一致 | ![Small File Extraction Result](./doc/release_extrator_small.png) |
-| 47.5 MB | 20 张 | 20 张 | 提取图像与源图像完全一致 | ![Big File Extraction Result](./doc/release_extrator_big.png) |
-
-**总结：** 经过多轮测试,性能还算可以，尚未发现特殊情况下无法正确提取的情况。
 
 ## 安装
 
