@@ -1,7 +1,15 @@
-﻿# xls2img
+# xls2img
 [Chinese](./README_CN.md) | English
 
 `xls2img` is a C library designed to extract embedded images (such as JPEG, PNG) from Microsoft Excel 97-2003 format `.xls` files.
+
+> **This project has significant flaws, please use with caution**
+
+> During the development of this tool, all test `XLS` files were saved using WPS. At that time, it was not realized that WPS performs "automatic repair" when saving files, reorganizing fragmented image data into a continuous format.
+
+> As a result, the extraction algorithm of this tool is actually based on `already organized` data formats. For original XLS files that have not been saved with WPS, embedded images cannot be extracted properly.
+
+> This is a flaw caused by a blind spot in development, and I am currently unable to fix it. I apologize for any inconvenience caused to your use.
 
 ## Why is it needed?
 
@@ -35,15 +43,6 @@
 In addition to being used as a library, 'xls2img' also provides a handy command-line tool for extracting images directly.
 
 **Download:** Go to the project's [Releases](https://github.com/capp-adocia/xls2img/releases) page and download the archive called 'xls2img_tool.zip'.
-
-## Performance and Accuracy
-
-**Performance Tests** (Parsing the Workbook stream and extracting all images from XLS in Release mode):
-
-| File Size | Number of Images | Actual Extracted | Status | Details |
-| :--- | :--- | :--- | :--- | :--- |
-| 6.5 MB | 6 | 6 | Extracted images are identical to the source images | ![Small File Extraction Result](./doc/release_extrator_small.png) |
-| 47.5 MB | 20 | 20 | Extracted images are identical to the source images | ![Big File Extraction Result](./doc/release_extrator_big.png) |
 
 **Summary:** After multiple rounds of testing, performance is acceptable, and no specific cases where correct extraction fails have been found.
 
