@@ -3,7 +3,7 @@
 
 `xls2img` is a C library designed to extract embedded images (such as JPEG, PNG) from Microsoft Excel 97-2003 format `.xls` files.
 
-> **This project has significant flaws, please use with caution**
+> **This project has flaws, please use with caution**
 
 > During the development of this tool, all test `XLS` files were saved using WPS. At that time, it was not realized that WPS performs "automatic repair" when saving files, reorganizing fragmented image data into a continuous format.
 
